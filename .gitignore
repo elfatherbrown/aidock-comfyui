@@ -1,0 +1,45 @@
+# Docker
+.docker/
+*.env
+.env
+docker-compose.override.yml
+
+# Build artifacts
+build/**/cache/
+build/**/*.tar
+build/**/*.img
+build/**/tmp/
+.buildx/
+.cache/
+
+# System files
+.DS_Store
+*~
+*.swp
+*.swo 
+
+# testing workspace
+test-workspace/
+test-workspace/**
+
+# python environment
+venv/
+# Python cache files
+__pycache__/
+*.py[cod]
+*.so
+
+# Workspace files from docker-compose
+workspace/
+workspace/**
+
+# Supervisor configs that might be generated
+config/supervisor/conf.d/*
+!config/supervisor/conf.d/.gitkeep
+
+# SSH keys
+config/authorized_keys
+
+# API wrapper development files
+build/COPY_ROOT_1/opt/ai-dock/api-wrapper/*.pyc
+build/COPY_ROOT_1/opt/ai-dock/api-wrapper/__pycache__/

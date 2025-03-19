@@ -1,0 +1,16 @@
+name: ComfyUI
+description: ComfyUI Stable Diffusion backend and GUI
+container_image: comfyui:latest
+ports: "8188:8188"
+docker_args: ""
+env:
+  - name: WORKSPACE
+    value: /workspace
+  - name: WEB_ENABLE_AUTH
+    value: "false"
+  - name: COMFYUI_PORT_HOST
+    value: "8188"
+volume_mounts:
+  - name: workspace
+    mount_path: /workspace
+    size_gb: 50 

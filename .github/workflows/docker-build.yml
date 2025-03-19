@@ -1,0 +1,58 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'build/**'
+      - 'config/**'
+      - '.github/workflows/docker-build.yml'
+      - 'docker-compose.test.yaml'
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha,format=long
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./build
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            PYTHON_VERSION=3.10
+            PYTORCH_VERSION=2.1.0
+            IMAGE_BASE=ghcr.io/ai-dock/python:3.10-v2-cuda-12.1.1-base-22.04

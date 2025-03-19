@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  supervisor:
+    platform: linux/amd64
+    build:
+      context: ./build
+      args:
+        PYTHON_VERSION: "3.10"
+        PYTORCH_VERSION: "2.1.0"
+        IMAGE_BASE: "ghcr.io/ai-dock/python:3.10-v2-cuda-12.1.1-base-22.04"
+    volumes:
+      - ./test-workspace:/workspace
+      - ./config/provisioning/default.sh:/opt/ai-dock/bin/provisioning.sh
+    ports:
+      - 8188:8188  # ComfyUI web interface
+    environment:
+      - WORKSPACE=/workspace
+      - WEB_ENABLE_AUTH=false
+      - COMFYUI_PORT_HOST=8188 
