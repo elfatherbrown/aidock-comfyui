@@ -1,7 +1,5 @@
 # Docker
 .docker/
-*.env
-.env
 docker-compose.override.yml
 
 # Build artifacts
