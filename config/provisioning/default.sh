@@ -75,6 +75,13 @@ CONTROLNET_MODELS=(
 
 ### DO NOT EDIT BELOW HERE UNLESS YOU KNOW WHAT YOU ARE DOING ###
 
+function provisioning_configure_git() {
+    # Configure Git to use HTTPS instead of SSH for GitHub
+    git config --global url."https://github.com/".insteadOf "git@github.com:"
+    # Disable SSL verification for GitHub (not recommended for production)
+    git config --global http.sslVerify false
+}
+
 function provisioning_start() {
     if [[ ! -d /opt/environments/python ]]; then 
         export MAMBA_BASE=true
@@ -82,6 +89,7 @@ function provisioning_start() {
     source /opt/ai-dock/etc/environment.sh
     source /opt/ai-dock/bin/venv-set.sh comfyui
 
+    provisioning_configure_git
     provisioning_print_header
     provisioning_get_apt_packages
     provisioning_get_nodes
