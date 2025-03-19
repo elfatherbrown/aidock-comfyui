@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  supervisor:
+    build:
+      context: ./build
+      args:
+        PYTHON_VERSION: "3.10"
+        PYTORCH_VERSION: "2.1.0"
+        IMAGE_BASE: "ghcr.io/ai-dock/python:3.10-v2-cuda-12.1.1-base-22.04"
+    volumes:
+      - ./test-workspace:/workspace:rshared
+      - ./config/provisioning/sdxl-lightweight.sh:/opt/ai-dock/bin/provisioning.sh 
