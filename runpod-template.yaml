@@ -17,7 +17,7 @@ env:
   - name: AUTO_UPDATE
     value: "true"
   - name: COMFYUI_ARGS
-    value: "--gpu-only --highvram"
+    value: "--lowvram"
 volume_mounts:
   - name: MYVOL
     mount_path: /workspace
