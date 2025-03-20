@@ -1,7 +1,7 @@
 name: elfatherbrown_base
 description: ComfyUI Stable Diffusion backend and GUI with network volume
 container_image: ghcr.io/elfatherbrown/aidock-comfyui:testing
-ports: "8188:8188"
+ports: "8189:8189"
 docker_args: ""
 env:
   - name: WORKSPACE
@@ -9,7 +9,7 @@ env:
   - name: WEB_ENABLE_AUTH
     value: "false"
   - name: COMFYUI_PORT_HOST
-    value: "8188"
+    value: "8189"
   - name: HF_TOKEN
     value: ${{ secrets.HF_TOKEN }}
   - name: CIVITAI_TOKEN
