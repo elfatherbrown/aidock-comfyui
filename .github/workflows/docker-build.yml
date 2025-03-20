@@ -7,7 +7,7 @@ on:
       - 'build/**'
       - 'config/**'
       - '.github/workflows/docker-build.yml'
-      - 'docker-compose.yaml' 
+      - 'docker-compose.yaml'
   pull_request:
     branches: [ "testing" ]
 
@@ -54,5 +54,5 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             PYTHON_VERSION=3.10
-            PYTORCH_VERSION=2.1.0
+            PYTORCH_VERSION=2.4.0
             IMAGE_BASE=ghcr.io/ai-dock/python:3.10-v2-cuda-12.1.1-base-22.04
