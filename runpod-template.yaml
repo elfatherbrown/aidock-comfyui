@@ -1,6 +1,6 @@
-name: ComfyUI
-description: ComfyUI Stable Diffusion backend and GUI
-container_image: comfyui:latest
+name: elfatherbrown_base
+description: ComfyUI Stable Diffusion backend and GUI with network volume
+container_image: ghcr.io/elfatherbrown/aidock-comfyui:testing
 ports: "8188:8188"
 docker_args: ""
 env:
@@ -10,7 +10,15 @@ env:
     value: "false"
   - name: COMFYUI_PORT_HOST
     value: "8188"
+  - name: HF_TOKEN
+    value: ${{ secrets.HF_TOKEN }}
+  - name: CIVITAI_TOKEN
+    value: ${{ secrets.CIVITAI_API_KEY }}
+  - name: AUTO_UPDATE
+    value: "true"
+  - name: COMFYUI_ARGS
+    value: "--gpu-only --highvram"
 volume_mounts:
-  - name: workspace
+  - name: MYVOL
     mount_path: /workspace
-    size_gb: 50 
+    region: EUR-IS-1 
