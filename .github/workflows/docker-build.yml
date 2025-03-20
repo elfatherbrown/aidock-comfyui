@@ -2,14 +2,14 @@ name: Build and Push Docker Image
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "testing" ]
     paths:
       - 'build/**'
       - 'config/**'
       - '.github/workflows/docker-build.yml'
       - 'docker-compose.test.yaml'
   pull_request:
-    branches: [ "main" ]
+    branches: [ "testing" ]
 
 env:
   REGISTRY: ghcr.io
