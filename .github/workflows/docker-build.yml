@@ -1,15 +1,12 @@
 name: Build and Push Docker Image
 
 on:
-  push:
-    branches: [ "master", "testing" ]
-    paths:
-      - 'build/**'
-      - 'config/**'
-      - '.github/workflows/docker-build.yml'
-      - 'docker-compose.yaml'
-  pull_request:
-    branches: [ "master", "testing" ]
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for building the image'
+        required: false
+        default: 'Manual build'
 
 env:
   REGISTRY: ghcr.io

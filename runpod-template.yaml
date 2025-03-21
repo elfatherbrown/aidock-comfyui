@@ -1,16 +1,20 @@
-name: ComfyUI
-description: ComfyUI Stable Diffusion backend and GUI
-container_image: comfyui:latest
-ports: "8188:8188"
-docker_args: ""
-env:
-  - name: WORKSPACE
-    value: /workspace
-  - name: WEB_ENABLE_AUTH
-    value: "false"
-  - name: COMFYUI_PORT_HOST
-    value: "8188"
-volume_mounts:
-  - name: workspace
-    mount_path: /workspace
-    size_gb: 50 
+{
+  "name": "ComfyUI elfatherbrown template",
+  "imageName": "ghcr.io/elfatherbrown/aidock-comfyui:master",
+  "containerDiskInGb": 12,
+  "ports": "8188/http,8888/http,22/tcp",
+  "dockerArgs": "--env=COMMANDLINE_ARGS=--lowvram --attention-slicing --sequential-offload",
+  "env": [
+    { "key": "WORKSPACE", "value": "/workspace" },
+    { "key": "WEB_ENABLE_AUTH", "value": "false" },
+    { "key": "COMFYUI_PORT_HOST", "value": "8188" },
+    { "key": "JUPYTER_PORT_HOST", "value": "8888" },
+    { "key": "SSH_PORT_HOST", "value": "22" },
+    { "key": "HF_TOKEN", "value": "${{ secrets.HF_TOKEN }}" },
+    { "key": "CIVITAI_TOKEN", "value": "${{ secrets.CIVITAI_API_KEY }}" },
+    { "key": "AUTO_UPDATE", "value": "true" }
+  ],
+  "volumeInGb": 15,
+  "volumeMountPath": "/workspace",
+  "description": "ComfyUI Stable Diffusion backend and GUI"
+}
