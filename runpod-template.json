@@ -1,5 +1,5 @@
 {
-  "name": "ComfyUI elfatherbrown template",
+  "name": "ComfyUI elfatherbrown template (Community)",
   "imageName": "ghcr.io/elfatherbrown/aidock-comfyui:master",
   "containerDiskInGb": 12,
   "ports": ["8188/http,8888/http,22/tcp"],
@@ -14,7 +14,7 @@
     "CIVITAI_TOKEN": "${{ secrets.CIVITAI_API_KEY }}",
     "AUTO_UPDATE": "true"
   },
-  "volumeInGb": 15,
+  "volumeInGb": 0,
   "volumeMountPath": "/workspace",
-  "description": "ComfyUI Stable Diffusion backend and GUI"
+  "description": "ComfyUI Stable Diffusion backend and GUI (Community Cloud)"
 }

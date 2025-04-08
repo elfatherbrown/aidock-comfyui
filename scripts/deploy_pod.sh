@@ -8,6 +8,7 @@ POD_NAME="comfyui-pod"
 USE_SPOT="true"
 TIMEOUT=300
 CREATE_TEMPLATE=true
+CLOUD_TYPE="SECURE"
 
 # Parse command line arguments
 function show_usage {
@@ -19,6 +20,7 @@ function show_usage {
     echo "  -n, --name <name>     Pod name (default: comfyui-pod)"
     echo "  -r, --reserved        Use reserved instance instead of spot/interruptible"
     echo "  -d, --datacenter <id> Override datacenter ID (otherwise uses volume's datacenter)"
+    echo "  -c, --community       Use community cloud instead of secure cloud"
     echo "  --timeout <seconds>   Pod startup timeout in seconds (default: 300)"
     echo "  -h, --help            Show this help message"
     exit 1
@@ -52,6 +54,10 @@ while [[ $# -gt 0 ]]; do
         -d|--datacenter)
             DATACENTER="$2"
             shift 2
+            ;;
+        -c|--community)
+            CLOUD_TYPE="COMMUNITY"
+            shift
             ;;
         --timeout)
             TIMEOUT="$2"
@@ -114,15 +120,17 @@ echo "Data Center: $DATACENTER"
 echo "Network Volume: $VOLUME_ID"
 echo "Name: $POD_NAME"
 echo "Using spot instance: $USE_SPOT"
+echo "Cloud Type: $CLOUD_TYPE"
 echo "Startup timeout: ${TIMEOUT}s"
 
 POD_DATA=$(cat <<EOF
 {
     "templateId": "$TEMPLATE_ID",
-    "dataCenterId": ["$DATACENTER"],
+    "dataCenterIds": ["$DATACENTER"],
     "interruptible": $USE_SPOT,
     "name": "$POD_NAME",
-    "networkVolumeId": "$VOLUME_ID"
+    "networkVolumeId": "$VOLUME_ID",
+    "cloudType": "$CLOUD_TYPE"
 }
 EOF
 )

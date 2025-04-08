@@ -6,12 +6,6 @@ RED='\033[0;31m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-# Check if python3-tomli is installed
-if ! python3 -c "import tomllib" &> /dev/null; then
-    echo "Installing python3-tomli..."
-    sudo apt update && sudo apt install -y python3-tomli
-fi
-
 # Get API key from RunPod config
 RUNPOD_CONFIG="$HOME/.runpod/config.toml"
 if [ ! -f "$RUNPOD_CONFIG" ]; then
