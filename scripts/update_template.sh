@@ -9,7 +9,7 @@ TEMPLATE_ID="d7ibe7tc2n"
 
 # Create GraphQL mutation
 GRAPHQL_QUERY='{
-    "query": "mutation { saveTemplate(input: { id: \"d7ibe7tc2n\", containerDiskInGb: 12, dockerArgs: \"\", env: [ { key: \"AUTO_UPDATE\", value: \"true\" }, { key: \"CIVITAI_TOKEN\", value: \"${{ secrets.CIVITAI_API_KEY }}\" }, { key: \"COMFYUI_PORT_HOST\", value: \"8188\" }, { key: \"HF_TOKEN\", value: \"${{ secrets.HF_TOKEN }}\" }, { key: \"JUPYTER_PORT_HOST\", value: \"8888\" }, { key: \"SSH_PORT_HOST\", value: \"22\" }, { key: \"WEB_ENABLE_AUTH\", value: \"false\" }, { key: \"WORKSPACE\", value: \"/workspace\" } ], imageName: \"ghcr.io/elfatherbrown/aidock-comfyui:master\", name: \"ComfyUI elfatherbrown template\", ports: \"8188/http,8888/http,22/tcp\", readme: \"\", volumeInGb: 0 }) { id containerDiskInGb dockerArgs env { key value } imageName name ports readme volumeInGb } }"
+    "query": "mutation { saveTemplate(input: { id: \"d7ibe7tc2n\", containerDiskInGb: 12, dockerArgs: \"\", env: [ { key: \"AUTO_UPDATE\", value: \"true\" }, { key: \"CIVITAI_TOKEN\", value: \"{{ secrets.CIVITAI_API_KEY }}\" }, { key: \"COMFYUI_PORT_HOST\", value: \"8188\" }, { key: \"HF_TOKEN\", value: \"{{ secrets.HF_TOKEN }}\" }, { key: \"JUPYTER_PORT_HOST\", value: \"8888\" }, { key: \"SSH_PORT_HOST\", value: \"22\" }, { key: \"WEB_ENABLE_AUTH\", value: \"false\" }, { key: \"WORKSPACE\", value: \"/workspace\" } ], imageName: \"ghcr.io/elfatherbrown/aidock-comfyui:master\", name: \"ComfyUI elfatherbrown template\", ports: \"8188/http,8888/http,22/tcp\", readme: \"\", volumeInGb: 0 }) { id containerDiskInGb dockerArgs env { key value } imageName name ports readme volumeInGb } }"
 }'
 
 # Call GraphQL API
