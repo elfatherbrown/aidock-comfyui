@@ -14,6 +14,8 @@ APT_PACKAGES=(
 PIP_PACKAGES=(
     "opencv-python==4.7.0.72"
     "onnxruntime"
+    "onnx"
+    "insightface"
 )
 
 NODES=(
